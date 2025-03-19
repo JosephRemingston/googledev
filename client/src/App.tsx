@@ -15,13 +15,19 @@ import HospitalBookings from "@/pages/HospitalBookings";
 import UserBookings from "@/pages/UserBookings";
 import AdminDashboard from "@/pages/AdminDashboard";
 import { AuthProvider } from "@/lib/auth";
+import image from "./images/bot.avif";
+import Chatbot from "react-chatbot-kit";
 
+import config from "./configs/chatbotConfig";
+import MessageParser from "./chatbot/MessageParser";
+import ActionProvider from "./chatbot/ActionProvider";
+import { navigate } from "wouter/use-browser-location";
 function Router() {
   const [location] = useLocation();
 
   // Check if we're in hospital dashboard section
   const isHospitalDashboard = location.startsWith("/hospital/dashboard");
-  
+
   // For admin dashboard
   const isAdminDashboard = location.startsWith("/admin");
 
@@ -30,21 +36,26 @@ function Router() {
       {/* Public routes */}
       <Route path="/" component={Home} />
       <Route path="/login" component={UserLogin} />
+
       <Route path="/register" component={UserRegister} />
       <Route path="/hospital/login" component={HospitalLogin} />
       <Route path="/hospital/register" component={HospitalRegister} />
-      
+
       {/* User routes */}
+
       <Route path="/bookings" component={UserBookings} />
-      
+
       {/* Hospital routes */}
       <Route path="/hospital/dashboard" component={HospitalDashboard} />
-      <Route path="/hospital/dashboard/beds" component={HospitalBedManagement} />
+      <Route
+        path="/hospital/dashboard/beds"
+        component={HospitalBedManagement}
+      />
       <Route path="/hospital/dashboard/bookings" component={HospitalBookings} />
-      
+
       {/* Admin routes */}
       <Route path="/admin" component={AdminDashboard} />
-      
+
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
@@ -56,6 +67,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Layout>
+          <div
+            className="fixed right-3 bottom-3 bg-red-300 h-20 w-20 rounded-full overflow-hidden"
+            onClick={() => {
+              window.open("https://beautiful-creponne-f4605a.netlify.app/");
+            }}
+          >
+            <img src={image} alt="" className="h-full w-full fit-cover" />
+          </div>
           <Router />
         </Layout>
         <Toaster />

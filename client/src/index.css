@@ -11,3 +11,28 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+.react-chatbot-kit-chat-container {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 500px; /* Adjust size */
+  height: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.react-chatbot-kit-chat-bot-message {
+  max-width: full; /* Small message bubble */
+  font-size: 12px;
+  padding: 5px;
+}
+.react-chatbot-kit-user-message{
+  max-width: 30px;
+  font-size:15px;
+  padding:6px;
+}
+.react-chatbot-kit-user-avatar {
+  width: 30px !important; /* Adjust width */
+  height: 30px !important; /* Adjust height */
+  border-radius: 50%; /* Keep it circular */
+}
